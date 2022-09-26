@@ -5,9 +5,9 @@ type Props = {};
 export default function App({}: Props) {
   let result = "";
   result = getResult();
-  return <div>App</div>;
+  return <div>Result: {result}</div>;
 }
 
 function getResult() {
-  return 1;
+  return "ok";
 }
