@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 import * as React from "react";
 
 type LoginPageProps = {
@@ -7,16 +7,11 @@ type LoginPageProps = {
 
 const LoginPage: React.FC<any> = () => {
   return (
-    <div>
-      LoginPage1
-      <Button
-        sx={{ marginLeft: 10 }}
-        variant="outlined"
-        onClick={() => alert("1234")}
-      >
-        Ok
-      </Button>
-    </div>
+    <Box>
+      <Card>
+        <span>1234</span>
+      </Card>
+    </Box>
   );
 };
 
