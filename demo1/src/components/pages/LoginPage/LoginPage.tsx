@@ -1,4 +1,4 @@
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import * as React from "react";
 
 type LoginPageProps = {
@@ -9,7 +9,11 @@ const LoginPage: React.FC<any> = () => {
   return (
     <Box>
       <Card>
-        <span>1234</span>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Login
+          </Typography>
+        </CardContent>
       </Card>
     </Box>
   );
