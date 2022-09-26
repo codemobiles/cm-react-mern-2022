@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Header from "./components/layouts/Header";
@@ -9,6 +9,19 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 
 const drawerWidth = 240;
+
+const theme = createTheme({
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 30,
+        },
+      },
+    },
+  },
+  spacing: 10,
+});
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -50,18 +63,20 @@ export default function App() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-      <Menu open={open} handleDrawerClose={handleDrawerClose} />
-      <Main open={open}>
-        <DrawerHeader />
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      </Main>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        <Menu open={open} handleDrawerClose={handleDrawerClose} />
+        <Main open={open}>
+          <DrawerHeader />
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </Main>
+      </Box>
+    </ThemeProvider>
   );
 }

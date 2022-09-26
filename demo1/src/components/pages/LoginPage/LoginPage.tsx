@@ -9,8 +9,12 @@ const LoginPage: React.FC<any> = () => {
   return (
     <div>
       LoginPage1
-      <Button variant="outlined" onClick={() => alert("1234")}>
-        Ok{" "}
+      <Button
+        sx={{ marginLeft: 10 }}
+        variant="outlined"
+        onClick={() => alert("1234")}
+      >
+        Ok
       </Button>
     </div>
   );
