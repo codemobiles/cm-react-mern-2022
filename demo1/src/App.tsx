@@ -7,20 +7,40 @@ import Menu from "./components/layouts/Menu";
 import LoginPage from "./components/pages/LoginPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
+import { blue } from "@mui/material/colors";
 
 const drawerWidth = 240;
 
+// https://mui.com/customization/default-theme/
 const theme = createTheme({
   components: {
-    MuiButton: {
+    MuiDrawer: {
       styleOverrides: {
-        root: {
-          borderRadius: 30,
+        paper: {
+          backgroundImage: `url(${process.env.PUBLIC_URL}/images/background_menu.jpg)`,
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#f2fcff",
+          backgroundPosition: "bottom",
+          width: drawerWidth,
         },
       },
     },
   },
-  spacing: 10,
+  spacing: 8,
+  typography: {
+    fontFamily: "Roboto",
+    fontWeightLight: 100,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 600,
+  },
+  palette: {
+    primary:
+      process.env.REACT_APP_IS_PRODUCTION === "1" ? { main: "#C1272D" } : blue,
+    background: {
+      default: "#EEE",
+    },
+  },
 });
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
