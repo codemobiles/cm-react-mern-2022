@@ -14,7 +14,15 @@ export default function App({}: Props) {
       App
       <span>Count1: {count1}</span>
       <br />
-      <button onClick={() => alert("Hey")}>Add</button>
+      <button
+        onClick={() => {
+          count1 = count1 + 1;
+          console.log(count1);
+        }}
+      >
+        Add
+      </button>
+      <button onClick={() => alert("Counter1: " + count1)}>Show</button>
     </div>
   );
 }
