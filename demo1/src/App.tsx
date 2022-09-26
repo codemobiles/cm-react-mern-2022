@@ -3,11 +3,16 @@ import React from "react";
 type Props = {};
 
 export default function App({}: Props) {
-  let result = "";
-  result = getResult();
-  return <div>Result: {result}</div>;
-}
+  // // implicit declaration
+  // let count1 = 0;
 
-function getResult() {
-  return "ok";
+  // explicit declaration
+  let count1: number = 0;
+
+  return (
+    <div>
+      App
+      <span>Count1: {count1}</span>
+    </div>
+  );
 }
