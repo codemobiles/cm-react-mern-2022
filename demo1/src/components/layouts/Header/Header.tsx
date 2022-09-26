@@ -70,17 +70,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function Header() {
+type HeaederProps = {
+  open: boolean;
+  handleDrawerOpen: () => void;
+};
+export default function Header({ open, handleDrawerOpen }: HeaederProps) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <AppBar position="fixed" open={open}>
