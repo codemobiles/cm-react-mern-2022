@@ -7,7 +7,9 @@ export default function App({}: Props) {
   // let count1 = 0;
 
   // explicit declaration
-  let count1: number = 0;
+  // let count1: number = 0;
+
+  const [count1, setCount1] = React.useState<number>(0);  
 
   return (
     <div>
@@ -16,7 +18,8 @@ export default function App({}: Props) {
       <br />
       <button
         onClick={() => {
-          count1 = count1 + 1;
+          // count1 = count1 + 1;
+          setCount1(count1 + 1);
           console.log(count1);
         }}
       >
