@@ -13,3 +13,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 # clean cache
 yarn cache clean
+
+# setup crcf
+npm i -g create-react-component-folder
+yarn add global create-react-component-folder
