@@ -21,6 +21,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
 import LoginPage from "./components/pages/LoginPage";
+import { Route, Routes } from "react-router-dom";
+import RegisterPage from "./components/pages/RegisterPage";
 
 const drawerWidth = 240;
 
@@ -92,7 +94,10 @@ export default function App() {
       <Menu open={open} handleDrawerClose={handleDrawerClose} />
       <Main open={open}>
         <DrawerHeader />
-        <LoginPage />
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
       </Main>
     </Box>
   );
