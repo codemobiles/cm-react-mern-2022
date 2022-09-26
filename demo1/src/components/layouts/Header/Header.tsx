@@ -70,7 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function App() {
+export default function Header() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
