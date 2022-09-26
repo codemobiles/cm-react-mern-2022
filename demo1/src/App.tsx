@@ -13,6 +13,8 @@ export default function App({}: Props) {
     <div>
       App
       <span>Count1: {count1}</span>
+      <br />
+      <button onClick={() => alert("Hey")}>Add</button>
     </div>
   );
 }
