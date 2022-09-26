@@ -4,4 +4,8 @@ npx create-react-app demo1 --template typescript
 index.html -> index.tsx -> app.tsx
 
 sudo npm i -g yarn
+yarn --version
 
+
+# install mui packages
+yarn add @mui/material @emotion/react @emotion/styled
