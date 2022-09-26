@@ -9,7 +9,9 @@ const LoginPage: React.FC<any> = () => {
   return (
     <div>
       LoginPage1
-      <Button onClick={() => alert("1234")}>Ok </Button>
+      <Button variant="outlined" onClick={() => alert("1234")}>
+        Ok{" "}
+      </Button>
     </div>
   );
 };
