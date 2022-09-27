@@ -14,6 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -38,6 +39,8 @@ const LoginPage: React.FC<any> = () => {
     defaultValues: initialValue,
     resolver: yupResolver(formValidateSchema),
   });
+
+  const navigate = useNavigate();
 
   const submit = (value: User) => {
     alert(JSON.stringify(value));
@@ -95,7 +98,13 @@ const LoginPage: React.FC<any> = () => {
           <Button type="submit" variant="contained">
             Login
           </Button>
-          <Button variant="outlined">Register</Button>
+          <Button
+            type="button"
+            onClick={() => navigate("/register")}
+            variant="outlined"
+          >
+            Register
+          </Button>
         </Stack>
       </form>
     );
