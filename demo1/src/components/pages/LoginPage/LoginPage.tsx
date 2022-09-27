@@ -14,6 +14,19 @@ type LoginPageProps = {
 };
 
 const LoginPage: React.FC<any> = () => {
+  const showForm = () => {
+    return (
+      <form>
+        <Stack direction="column" spacing={1}>
+          <TextField label="Username" variant="outlined" />
+          <TextField type="password" label="Password" variant="outlined" />
+          <Button variant="contained">Login</Button>
+          <Button variant="outlined">Register</Button>
+        </Stack>
+      </form>
+    );
+  };
+
   return (
     <Box>
       <Card>
@@ -21,14 +34,7 @@ const LoginPage: React.FC<any> = () => {
           <Typography gutterBottom variant="h5">
             Login
           </Typography>
-
-          <form>
-            <Stack direction="column" spacing={1}>
-              <TextField label="Username" variant="outlined" />
-              <TextField type="password" label="Password" variant="outlined" />
-              <Button variant="contained">Login</Button>
-            </Stack>
-          </form>
+          {showForm()}
         </CardContent>
       </Card>
     </Box>
