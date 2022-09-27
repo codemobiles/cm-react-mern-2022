@@ -16,8 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import { exampleSelector } from "../../../store/slices/exampleSlice";
+import { RootState, useAppDispatch } from "../../../store/store";
+import { add, exampleSelector } from "../../../store/slices/exampleSlice";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -44,6 +44,7 @@ const LoginPage: React.FC<any> = () => {
   });
 
   const exampleReducer = useSelector(exampleSelector);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const submit = (value: User) => {
@@ -118,7 +119,7 @@ const LoginPage: React.FC<any> = () => {
     <Box>
       <Card>
         <CardContent>
-          <Typography gutterBottom variant="h5">
+          <Typography gutterBottom variant="h5" onClick={() => dispatch(add())}>
             Login {exampleReducer.count}
           </Typography>
           {showForm()}

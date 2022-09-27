@@ -127,7 +127,7 @@ const Register = (props: RegisterProps) => {
     <Box sx={classes.root}>
       <Card sx={{ maxWidth: 345 }}>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" >
             Register {exampleReducer.count}
           </Typography>
           {showForm()}
