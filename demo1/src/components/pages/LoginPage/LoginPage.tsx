@@ -8,14 +8,14 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import * as React from "react";
+import { User } from "../../../types/user.type";
 
 type LoginPageProps = {
   //
 };
 
 const LoginPage: React.FC<any> = () => {
-
-  let user: any = { username: "", password: "" };
+  let user: User = { username: "", password: "" };
 
   const showForm = () => {
     return (
@@ -26,8 +26,16 @@ const LoginPage: React.FC<any> = () => {
             label="Username"
             variant="outlined"
           />
-          <TextField type="password" label="Password" variant="outlined" />
-          <Button onClick={() => alert(user.username)} variant="contained">
+          <TextField
+            onChange={(event) => (user.password = event.target.value)}
+            type="password"
+            label="Password"
+            variant="outlined"
+          />
+          <Button
+            onClick={() => alert(JSON.stringify(user))}
+            variant="contained"
+          >
             Login
           </Button>
           <Button variant="outlined">Register</Button>
