@@ -34,6 +34,7 @@ type RegisterProps = {};
 const Register = (props: RegisterProps) => {
   const onSubmit = async (values: User) => {};
   const navigate = useNavigate();
+  
 
   const initialValue: User = { username: "", password: "" };
   const {

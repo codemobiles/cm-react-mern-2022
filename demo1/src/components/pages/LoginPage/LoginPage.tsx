@@ -16,6 +16,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+import { exampleSelector } from "../../../store/slices/exampleSlice";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -41,7 +43,7 @@ const LoginPage: React.FC<any> = () => {
     resolver: yupResolver(formValidateSchema),
   });
 
-  const exampleReducer = useSelector((state: any) => state.exampleReducer);
+  const exampleReducer = useSelector(exampleSelector);
   const navigate = useNavigate();
 
   const submit = (value: User) => {
