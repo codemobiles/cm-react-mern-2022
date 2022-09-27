@@ -6,6 +6,7 @@ type LoginPageProps = {
 };
 
 const LoginPage: React.FC<any> = () => {
+  
   return (
     <Box>
       <Card>
