@@ -9,6 +9,7 @@ import {
 import { Stack } from "@mui/system";
 import * as React from "react";
 import { User } from "../../../types/user.type";
+import { Controller, useForm } from "react-hook-form";
 
 type LoginPageProps = {
   //
@@ -22,21 +23,37 @@ const LoginPage: React.FC<any> = () => {
     formState: { errors },
   } = useForm<User>({ defaultValues: initialValue });
 
+  const submit = () => {
+    alert("Hey");
+  };
+
   const showForm = () => {
     return (
-      <form>
+      <form onSubmit={handleSubmit(submit)}>
         <Stack direction="column" spacing={1}>
-          <TextField
-            onChange={(event) => (user.username = event.target.value)}
-            label="Username"
-            variant="outlined"
+          {/* Username */}
+          <Controller
+            name="username"
+            control={control}
+            render={({ field }) => (
+              <TextField {...field} label="Username" variant="outlined" />
+            )}
           />
-          <TextField
-            onChange={(event) => (user.password = event.target.value)}
-            type="password"
-            label="Password"
-            variant="outlined"
+
+          {/* Password */}
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                type="password"
+                label="Password"
+                variant="outlined"
+              />
+            )}
           />
+
           <Button
             onClick={() => alert(JSON.stringify(user))}
             variant="contained"
