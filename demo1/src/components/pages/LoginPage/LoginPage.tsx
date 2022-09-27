@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardContent,
+  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,6 +13,7 @@ import { User } from "../../../types/user.type";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import * as Icons from "@mui/icons-material";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -56,6 +58,13 @@ const LoginPage: React.FC<any> = () => {
                 variant="outlined"
                 error={Boolean(errors.username?.message)}
                 helperText={errors.username?.message}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Icons.Email />
+                    </InputAdornment>
+                  ),
+                }}
               />
             )}
           />
@@ -72,6 +81,13 @@ const LoginPage: React.FC<any> = () => {
                 variant="outlined"
                 error={Boolean(errors.password?.message)}
                 helperText={errors.password?.message}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Icons.Password />
+                    </InputAdornment>
+                  ),
+                }}
               />
             )}
           />
