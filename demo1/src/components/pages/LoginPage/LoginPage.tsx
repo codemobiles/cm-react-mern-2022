@@ -14,13 +14,22 @@ type LoginPageProps = {
 };
 
 const LoginPage: React.FC<any> = () => {
+
+  let user: any = { username: "", password: "" };
+
   const showForm = () => {
     return (
       <form>
         <Stack direction="column" spacing={1}>
-          <TextField label="Username" variant="outlined" />
+          <TextField
+            onChange={(event) => (user.username = event.target.value)}
+            label="Username"
+            variant="outlined"
+          />
           <TextField type="password" label="Password" variant="outlined" />
-          <Button variant="contained">Login</Button>
+          <Button onClick={() => alert(user.username)} variant="contained">
+            Login
+          </Button>
           <Button variant="outlined">Register</Button>
         </Stack>
       </form>
