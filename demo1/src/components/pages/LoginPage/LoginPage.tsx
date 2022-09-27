@@ -23,8 +23,8 @@ const LoginPage: React.FC<any> = () => {
     formState: { errors },
   } = useForm<User>({ defaultValues: initialValue });
 
-  const submit = () => {
-    alert("Hey");
+  const submit = (value: User) => {
+    alert(JSON.stringify(value));
   };
 
   const showForm = () => {
@@ -54,10 +54,7 @@ const LoginPage: React.FC<any> = () => {
             )}
           />
 
-          <Button
-            onClick={() => alert(JSON.stringify(user))}
-            variant="contained"
-          >
+          <Button type="submit" variant="contained">
             Login
           </Button>
           <Button variant="outlined">Register</Button>
