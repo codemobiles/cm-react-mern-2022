@@ -25,4 +25,4 @@ npx crcf -f  --notest --typescript LoginPage RegisterPage ReportPage StockPage S
 
 
 # install (frontend)
-yarn add @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid chart.js react-chartjs-2 @react-hook/debounce react-router-dom @types/react-router-dom axios moment react-moment url-join react-number-format react-redux redux @reduxjs/toolkit react-hook-form faker@5.5.3 @types/faker@5.5.3
+yarn add @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid chart.js react-chartjs-2 @react-hook/debounce react-router-dom @types/react-router-dom axios moment react-moment url-join react-number-format react-redux redux @reduxjs/toolkit react-hook-form faker@5.5.3 @types/faker@5.5.3 yup @hookform/resolvers  

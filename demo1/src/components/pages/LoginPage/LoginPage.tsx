@@ -32,7 +32,10 @@ const LoginPage: React.FC<any> = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({ defaultValues: initialValue });
+  } = useForm<User>({
+    defaultValues: initialValue,
+    resolver: yupResolver(formValidateSchema),
+  });
 
   const submit = (value: User) => {
     alert(JSON.stringify(value));
