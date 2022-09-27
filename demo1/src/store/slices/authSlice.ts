@@ -1,6 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "../../types/user.type";
 
+export interface AuthState {
+  loginResult?: LoginResult;
+  registerResult?: RegisterResult;
+  isAuthenticating: boolean;
+  isAuthented: boolean;
+  isError: boolean;
+}
+
 export const login = createAsyncThunk("auth/login", (user: User) => {
   alert(JSON.stringify(user));
 });
