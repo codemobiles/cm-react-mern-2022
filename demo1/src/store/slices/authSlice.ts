@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { LoginResult, RegisterResult } from "../../types/auth-result.type";
 import { User } from "../../types/user.type";
 
 export interface AuthState {
