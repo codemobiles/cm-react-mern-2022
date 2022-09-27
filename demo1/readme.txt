@@ -19,7 +19,7 @@ npm i -g create-react-component-folder
 yarn add global create-react-component-folder
 npx crcf --version
 
-
+ 
 npx crcf -f  --notest --typescript Header Menu AuthorizedPage
 npx crcf -f  --notest --typescript LoginPage RegisterPage ReportPage StockPage StockCreatePage StockEditPage TransactionPage ShopPage
 
