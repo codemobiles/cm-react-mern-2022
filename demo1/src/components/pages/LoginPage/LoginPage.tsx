@@ -15,7 +15,12 @@ type LoginPageProps = {
 };
 
 const LoginPage: React.FC<any> = () => {
-  let user: User = { username: "", password: "" };
+  const initialValue: User = { username: "", password: "" };
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<User>({ defaultValues: initialValue });
 
   const showForm = () => {
     return (
