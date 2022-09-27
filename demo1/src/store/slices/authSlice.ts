@@ -10,6 +10,12 @@ export interface AuthState {
   isError: boolean;
 }
 
+const defaultState: AuthState = {
+  isAuthented: false,
+  isAuthenticating: true,
+  isError: false,
+};
+
 export const login = createAsyncThunk("auth/login", (user: User) => {
   alert(JSON.stringify(user));
 });
@@ -20,7 +26,7 @@ export const register = createAsyncThunk("auth/register", (user: User) => {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {},
+  initialState: defaultState,
   reducers: {},
   extraReducers: (builder) => {},
 });
