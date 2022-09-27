@@ -33,6 +33,7 @@ const formValidateSchema = Yup.object().shape({
 type RegisterProps = {};
 const Register = (props: RegisterProps) => {
   const onSubmit = async (values: User) => {};
+  const navigate = useNavigate();
 
   const initialValue: User = { username: "", password: "" };
   const {
@@ -112,6 +113,7 @@ const Register = (props: RegisterProps) => {
           type="button"
           fullWidth
           variant="outlined"
+          onClick={() => navigate(-1)}
         >
           Cancel
         </Button>
