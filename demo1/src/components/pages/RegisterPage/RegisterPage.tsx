@@ -15,7 +15,8 @@ import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
-import { exampleSelector } from "../../../store/slices/exampleSlice";
+import { exampleSelector, reset } from "../../../store/slices/exampleSlice";
+import { useAppDispatch } from "../../../store/store";
 // add any to fix error temporary
 const classes: SxProps<Theme> | any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -36,6 +37,7 @@ const Register = (props: RegisterProps) => {
   const onSubmit = async (values: User) => {};
   const navigate = useNavigate();
   const exampleReducer = useSelector(exampleSelector);
+  const dispatch = useAppDispatch();
 
   const initialValue: User = { username: "", password: "" };
   const {
@@ -127,7 +129,12 @@ const Register = (props: RegisterProps) => {
     <Box sx={classes.root}>
       <Card sx={{ maxWidth: 345 }}>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" >
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            onClick={() => dispatch(reset(-1))}
+          >
             Register {exampleReducer.count}
           </Typography>
           {showForm()}
