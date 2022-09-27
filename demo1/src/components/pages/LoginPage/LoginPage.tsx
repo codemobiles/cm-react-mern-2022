@@ -50,7 +50,13 @@ const LoginPage: React.FC<any> = () => {
             name="username"
             control={control}
             render={({ field }) => (
-              <TextField {...field} label="Username" variant="outlined" />
+              <TextField
+                {...field}
+                label="Username"
+                variant="outlined"
+                error={Boolean(errors.username?.message)}
+                helperText={errors.username?.message}
+              />
             )}
           />
 
@@ -64,6 +70,8 @@ const LoginPage: React.FC<any> = () => {
                 type="password"
                 label="Password"
                 variant="outlined"
+                error={Boolean(errors.password?.message)}
+                helperText={errors.password?.message}
               />
             )}
           />
