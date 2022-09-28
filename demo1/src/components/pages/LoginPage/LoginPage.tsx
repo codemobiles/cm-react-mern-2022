@@ -50,8 +50,11 @@ const LoginPage: React.FC<any> = () => {
   const navigate = useNavigate();
   const authReducer = useSelector(authSelector);
 
-  const submit = (value: User) => {
-    dispatch(login(value));
+  const submit = async (value: User) => {
+    const result = await dispatch(login(value));
+    if (login.fulfilled.match(result)) {
+      navigate("/stock");
+    }
   };
 
   const showForm = () => {

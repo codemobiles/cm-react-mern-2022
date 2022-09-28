@@ -56,18 +56,14 @@ const authSlice = createSlice({
     });
     // login
     builder.addCase(login.fulfilled, (state, action) => {
-      if (action.payload.result === "ok") {
-        state.isAuthented = true;
-        state.isError = false;
-        state.loginResult = action.payload;
-      } else {
-        state.isError = true;
-        state.isAuthented = false;
-      }
+      state.isAuthented = true;
+      state.isError = false;
+      state.loginResult = action.payload;
       state.isAuthenticating = false;
     });
     builder.addCase(login.rejected, (state) => {
       state.isError = true;
+      state.isAuthenticating = false;
     });
   },
 });
