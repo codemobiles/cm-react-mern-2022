@@ -96,13 +96,12 @@ export default function App() {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
 
-        {/* Header */}
+        {/* Header & Menu */}
         {authReducer.isAuthented && (
-          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-        )}
-        {/* Menu */}
-        {authReducer.isAuthented && (
-          <Menu open={open} handleDrawerClose={handleDrawerClose} />
+          <>
+            <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+            <Menu open={open} handleDrawerClose={handleDrawerClose} />
+          </>
         )}
 
         <Main open={open}>
