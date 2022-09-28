@@ -17,7 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
 import { exampleSelector, reset } from "../../../store/slices/exampleSlice";
 import { useAppDispatch } from "../../../store/store";
-import { register } from "../../../store/slices/authSlice";
+import { authSelector, register } from "../../../store/slices/authSlice";
 // add any to fix error temporary
 const classes: SxProps<Theme> | any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -37,11 +37,14 @@ type RegisterProps = {};
 const Register = (props: RegisterProps) => {
   const navigate = useNavigate();
   const exampleReducer = useSelector(exampleSelector);
-  const authReducer = useSelector()
+  const authReducer = useSelector(authSelector);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (values: User) => {
-    dispatch(register(values));
+    const result = await dispatch(register(values));
+    if (register.fulfilled.match(result)) {
+      navigate("/login");
+    }
   };
 
   const initialValue: User = { username: "", password: "" };
@@ -108,7 +111,9 @@ const Register = (props: RegisterProps) => {
           )}
         ></Controller>
 
-        <Alert severity="error">Register failed - internal error</Alert>
+        {authReducer.isError && (
+          <Alert severity="error">Register failed - internal error</Alert>
+        )}
 
         <Button
           sx={classes.submitBtn}
