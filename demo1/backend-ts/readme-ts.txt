@@ -11,4 +11,5 @@ yarn add express bcryptjs cors formidable fs-extra jsonwebtoken onesignal-node
 yarn add  @types/bcryptjs @types/jsonwebtoken @types/formidable @types/fs-extra @types/cors -D
 yarn start
 
-
+# gen private and public key
+https://travistidwell.com/jsencrypt/demo/
