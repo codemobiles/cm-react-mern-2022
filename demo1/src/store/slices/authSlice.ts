@@ -44,11 +44,24 @@ const authSlice = createSlice({
     relogin: (state) => {},
   },
   extraReducers: (builder) => {
+    // register
     builder.addCase(register.fulfilled, (state) => {
       state.isError = false;
     });
     builder.addCase(register.rejected, (state) => {
       state.isError = true;
+    });
+    // login
+    builder.addCase(login.fulfilled, (state, action) => {
+      if (action.payload.result === "ok") {
+        state.isAuthented = true;
+        state.isError = false;
+        state.loginResult = action.payload;
+      } else {
+        state.isError = true;
+        state.isAuthented = false;
+      }
+      state.isAuthenticating = false;
     });
   },
 });
