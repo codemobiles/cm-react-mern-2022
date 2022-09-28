@@ -9,20 +9,8 @@ export const Routes = [
   },
   {
     method: "get",
-    route: "/users/:id",
+    route: "/register",
     controller: UserController,
-    action: "one",
-  },
-  {
-    method: "post",
-    route: "/users",
-    controller: UserController,
-    action: "save",
-  },
-  {
-    method: "delete",
-    route: "/users/:id",
-    controller: UserController,
-    action: "remove",
+    action: "register",
   },
 ];

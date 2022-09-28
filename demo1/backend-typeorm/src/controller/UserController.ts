@@ -1,27 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
+import { Users } from "../entity/User";
 import { AppDataSource } from "../data-source";
 
 export class UserController {
   // private userRepository = getRepository(User)
-  private userRepository = AppDataSource.getMongoRepository(User);
+  private userRepository = AppDataSource.getMongoRepository(Users);
 
   async all(request: Request, response: Response, next: NextFunction) {
     return this.userRepository.find();
   }
 
-  async one(request: any, response: Response, next: NextFunction) {
-    return this.userRepository.findOne(request.params.id);
-  }
-
-  async save(request: Request, response: Response, next: NextFunction) {
-    return this.userRepository.save(request.body);
-  }
-
-  async remove(request: Request, response: Response, next: NextFunction) {
-    let userToRemove = await this.userRepository.findOneBy({
-      id: request.params.id,
+  async register(request: Request, response: Response, next: NextFunction) {
+    return this.userRepository.insertOne({
+      username: "admin",
+      password: "1234",
     });
-    await this.userRepository.remove(userToRemove);
   }
 }

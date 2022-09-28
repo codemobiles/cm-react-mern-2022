@@ -1,9 +1,7 @@
 import * as express from "express";
-
 import { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
-import { User } from "./entity/User";
 
 AppDataSource.initialize()
   .then(async () => {
