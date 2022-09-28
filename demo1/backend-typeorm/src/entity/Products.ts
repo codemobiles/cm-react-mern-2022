@@ -1,24 +1,29 @@
 import { Entity, ObjectIdColumn, ObjectID, Column } from "typeorm";
 
 @Entity()
-export class Users {
+export class Products {
   @ObjectIdColumn()
   _id: ObjectID;
 
   @Column()
-  username: string;
+  product_id: number;
 
   @Column()
-  password: string;
+  name: string;
 
-  // default = "normal"
   @Column()
-  level?: string;
+  image: string;
+
+  @Column()
+  stock: number;
+
+  @Column()
+  price: number;
 
   // default = "Date.now"
   @Column()
   created?: Date;
 
   @Column()
-  __v?: number = 0;  
+  __v?: number = 0;
 }
