@@ -24,15 +24,18 @@ export const login = createAsyncThunk("auth/login", async (value: User) => {
   let result = await httpClient.post<LoginResult>(server.LOGIN_URL, value);
 
   const { token } = result.data;
-  localStorage.setItem(server.TOKEN_KEY, token);
+  localStorage.setItem(server.TOKEN_KEY, token!);
   return result.data;
 });
 
 export const register = createAsyncThunk(
   "auth/register",
   async (user: User) => {
-    const result = await httpClient.post(server.REGISTER_URL, user);
-    alert(JSON.stringify(result.data));
+    const result = await httpClient.post<RegisterResult>(
+      server.REGISTER_URL,
+      user
+    );
+    alert(result.data.message);
   }
 );
 
@@ -62,6 +65,9 @@ const authSlice = createSlice({
         state.isAuthented = false;
       }
       state.isAuthenticating = false;
+    });
+    builder.addCase(login.rejected, (state) => {
+      state.isError = true;
     });
   },
 });
