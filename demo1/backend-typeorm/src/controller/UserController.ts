@@ -11,9 +11,7 @@ export class UserController {
   }
 
   async register(request: Request, response: Response, next: NextFunction) {
-    return this.userRepository.insertOne({
-      username: "admin",
-      password: "1234",
-    });
+    await this.userRepository.insertOne(request.body);
+    return { result: "ok" };
   }
 }

@@ -8,7 +8,7 @@ export const Routes = [
     action: "all",
   },
   {
-    method: "get",
+    method: "post",
     route: "/register",
     controller: UserController,
     action: "register",
