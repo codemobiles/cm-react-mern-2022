@@ -10,6 +10,7 @@ AppDataSource.initialize()
     const app = express();
     app.use(express.json());
     app.use(cors());
+
     // register express routes from defined application routes
     Routes.forEach((route) => {
       (app as any)[route.method](
