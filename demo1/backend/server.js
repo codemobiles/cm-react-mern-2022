@@ -1,9 +1,15 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.json({ result: "ok" });
-});
+app.get(
+  "/",
+  (req, res, next) => {
+    next();
+  },
+  (req, res) => {
+    res.json({ result: "ok" });
+  }
+);
 
 // http://localhost:8081/login?username=admin&password=1234
 app.get("/login", (req, res) => {
