@@ -24,7 +24,7 @@ export const login = createAsyncThunk("auth/login", async (value: User) => {
   let response = await httpClient.post<LoginResult>(server.LOGIN_URL, value);
 
   const { token, result } = response.data;
-  localStorage.setItem(server.TOKEN_KEY, token!); 
+  localStorage.setItem(server.TOKEN_KEY, token!);
   if (result === "ok") {
     return response.data;
   }
@@ -47,7 +47,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState: defaultState,
   reducers: {
-    logout: (state) => {},
+    logout: (state) => {
+      localStorage.clear();
+      state = defaultState;
+    },
     relogin: (state) => {},
   },
   extraReducers: (builder) => {
