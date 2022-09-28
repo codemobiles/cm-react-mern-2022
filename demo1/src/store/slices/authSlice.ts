@@ -38,7 +38,14 @@ const authSlice = createSlice({
     logout: (state) => {},
     relogin: (state) => {},
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(register.fulfilled, (state) => {
+      state.isError = false;
+    });
+    builder.addCase(register.rejected, (state) => {
+      state.isError = true;
+    });
+  },
 });
 
 export const { logout, relogin } = authSlice.actions;
