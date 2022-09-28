@@ -34,8 +34,12 @@ export const register = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: defaultState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {},
+    relogin: (state) => {},
+  },
   extraReducers: (builder) => {},
 });
 
+export const { logout, relogin } = authSlice.actions;
 export default authSlice.reducer;
