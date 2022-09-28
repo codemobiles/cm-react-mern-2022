@@ -4,7 +4,7 @@ import { Users } from "./entity/User";
 
 export const AppDataSource = new DataSource({
   type: "mongodb",
-  database: "test",
+  database: "demopos",
   synchronize: true,
   logging: false,
   entities: [Users],

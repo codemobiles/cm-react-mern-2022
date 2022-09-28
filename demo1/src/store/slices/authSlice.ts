@@ -21,9 +21,17 @@ export const login = createAsyncThunk("auth/login", (user: User) => {
   alert(JSON.stringify(user));
 });
 
-export const register = createAsyncThunk("auth/register", (user: User) => {
-  axios.post("http://localhost:8081/api/v2/register", user);
-});
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user: User) => {
+    const result = await axios.post(
+      "http://localhost:8081/api/v2/register",
+      user
+    );
+
+    alert(JSON.stringify(result.data));
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
