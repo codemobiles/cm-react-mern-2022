@@ -15,7 +15,8 @@ import StockEditPage from "./components/pages/StockEditPage";
 import StockPage from "./components/pages/StockPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import { useSelector } from "react-redux";
-import { authSelector } from "./store/slices/authSlice";
+import { authSelector, relogin } from "./store/slices/authSlice";
+import { useAppDispatch } from "./store/store";
 
 const drawerWidth = 240;
 
@@ -82,6 +83,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function App() {
   const [open, setOpen] = React.useState(true);
   const authReducer = useSelector(authSelector);
+  const dispatch = useAppDispatch();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -90,6 +92,11 @@ export default function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    console.log("App created");
+    dispatch(relogin());
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

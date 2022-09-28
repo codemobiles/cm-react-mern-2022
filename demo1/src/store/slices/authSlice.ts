@@ -49,7 +49,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       localStorage.clear();
-      state = defaultState;
+      state.isAuthented = false;
     },
     relogin: (state) => {},
   },
