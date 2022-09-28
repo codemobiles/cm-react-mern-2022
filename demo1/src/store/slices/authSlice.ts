@@ -20,8 +20,12 @@ const defaultState: AuthState = {
   isError: false,
 };
 
-export const login = createAsyncThunk("auth/login", (user: User) => {
-  alert(JSON.stringify(user));
+export const login = createAsyncThunk("auth/login", async (value: User) => {
+  let result = await httpClient.post(server.LOGIN_URL, value);
+
+  const { token } = result.data;
+  localStorage.setItem(server.TOKEN_KEY, token);
+  return result.data;
 });
 
 export const register = createAsyncThunk(

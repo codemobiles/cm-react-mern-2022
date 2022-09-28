@@ -4,6 +4,7 @@ import { AppDataSource } from "../data-source";
 import * as bcrypt from "bcryptjs";
 import { savedValue } from "../utils/cm-util";
 import { TypedBodyRequest } from "../types/Request.types";
+import jwt from "../utils/jwt";
 
 export class UserController {
   // private userRepository = getRepository(User)
@@ -44,7 +45,7 @@ export class UserController {
             level: doc.level,
             username: doc.username,
           };
-          let token = "1234"; // jwt.sign(payload);
+          let token = jwt.sign(payload);
 
           res.json({ result: "ok", token, message: "success" });
         } else {
