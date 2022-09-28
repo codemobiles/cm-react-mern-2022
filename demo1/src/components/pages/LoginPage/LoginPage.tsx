@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -18,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../store/store";
 import { add, exampleSelector } from "../../../store/slices/exampleSlice";
+import { authSelector, login } from "../../../store/slices/authSlice";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -46,9 +48,10 @@ const LoginPage: React.FC<any> = () => {
   const exampleReducer = useSelector(exampleSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authReducer = useSelector(authSelector);
 
   const submit = (value: User) => {
-    alert(JSON.stringify(value));
+    dispatch(login(value));
   };
 
   const showForm = () => {
@@ -99,6 +102,10 @@ const LoginPage: React.FC<any> = () => {
               />
             )}
           />
+
+          {authReducer.isError && (
+            <Alert severity="error">Login failed - internal error</Alert>
+          )}
 
           <Button type="submit" variant="contained">
             Login
