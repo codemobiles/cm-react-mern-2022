@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
 import { exampleSelector, reset } from "../../../store/slices/exampleSlice";
 import { useAppDispatch } from "../../../store/store";
+import { register } from "../../../store/slices/authSlice";
 // add any to fix error temporary
 const classes: SxProps<Theme> | any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -34,10 +35,13 @@ const formValidateSchema = Yup.object().shape({
 
 type RegisterProps = {};
 const Register = (props: RegisterProps) => {
-  const onSubmit = async (values: User) => {};
   const navigate = useNavigate();
   const exampleReducer = useSelector(exampleSelector);
   const dispatch = useAppDispatch();
+
+  const onSubmit = async (values: User) => {
+    dispatch(register(values));
+  };
 
   const initialValue: User = { username: "", password: "" };
   const {

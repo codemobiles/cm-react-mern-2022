@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { LoginResult, RegisterResult } from "../../types/auth-result.type";
 import { User } from "../../types/user.type";
+import axios from "axios";
 
 export interface AuthState {
   loginResult?: LoginResult;
@@ -21,7 +22,7 @@ export const login = createAsyncThunk("auth/login", (user: User) => {
 });
 
 export const register = createAsyncThunk("auth/register", (user: User) => {
-  alert(JSON.stringify(user));
+  axios.post("http://localhost:8081/api/v2/register", user);
 });
 
 const authSlice = createSlice({
