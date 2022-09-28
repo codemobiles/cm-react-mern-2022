@@ -27,7 +27,7 @@ export class UserController {
     }
   }
 
-  async login(req: any, res: Response, next: NextFunction) {
+  async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { username, password } = req.body;
 
