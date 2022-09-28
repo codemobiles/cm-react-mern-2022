@@ -4,6 +4,7 @@ import { User } from "../../types/user.type";
 import axios from "axios";
 import { httpClient } from "../../utils/HttpClient";
 import { server } from "../../constants";
+import { RootState } from "../store";
 
 export interface AuthState {
   loginResult?: LoginResult;
@@ -49,4 +50,5 @@ const authSlice = createSlice({
 });
 
 export const { logout, relogin } = authSlice.actions;
+export const authSelector = (state: RootState) => state.authReducer;
 export default authSlice.reducer;

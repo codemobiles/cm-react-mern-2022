@@ -37,6 +37,7 @@ type RegisterProps = {};
 const Register = (props: RegisterProps) => {
   const navigate = useNavigate();
   const exampleReducer = useSelector(exampleSelector);
+  const authReducer = useSelector()
   const dispatch = useAppDispatch();
 
   const onSubmit = async (values: User) => {
@@ -106,6 +107,8 @@ const Register = (props: RegisterProps) => {
             />
           )}
         ></Controller>
+
+        <Alert severity="error">Register failed - internal error</Alert>
 
         <Button
           sx={classes.submitBtn}
