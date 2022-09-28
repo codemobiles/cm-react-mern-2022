@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
 import * as cors from "cors";
+import { myInterceptor1 } from "./utils/my-interceptor";
 
 AppDataSource.initialize()
   .then(async () => {
@@ -15,14 +16,7 @@ AppDataSource.initialize()
     Routes.forEach((route) => {
       (app as any)[route.method](
         "/api/v2" + route.route,
-        (req, res, next) => {
-          // next();
-          if (req.query.token === "1234") {
-            next();
-          } else {
-            res.json({ result: "nok", message: "no token" });
-          }
-        },
+        myInterceptor1,
         (req: Request, res: Response, next: Function) => {
           const result = new (route.controller as any)()[route.action](
             req,
