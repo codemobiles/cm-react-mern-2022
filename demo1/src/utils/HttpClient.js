@@ -1,6 +1,11 @@
 import axios from "axios";
 import join from "url-join";
-import { server, apiUrl, NOT_CONNECT_NETWORK, NETWORK_CONNECTION_MESSAGE } from "../constants";
+import {
+  server,
+  apiUrl,
+  NOT_CONNECT_NETWORK,
+  NETWORK_CONNECTION_MESSAGE,
+} from "../constants";
 import { store } from "../store/store";
 import { logout, relogin } from "../store/slices/authSlice";
 
