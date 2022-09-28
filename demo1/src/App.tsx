@@ -92,8 +92,19 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-        <Menu open={open} handleDrawerClose={handleDrawerClose} />
+       
+
+        {/* Header */}
+        {authReducer.isAuthented && (
+          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+        )}
+        {/* Menu */}
+        {authReducer.isAuthented && (
+          <Menu open={open} handleDrawerClose={handleDrawerClose} />
+        )}
+
+
+
         <Main open={open}>
           <DrawerHeader />
           <Routes>
