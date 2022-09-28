@@ -21,11 +21,15 @@ const defaultState: AuthState = {
 };
 
 export const login = createAsyncThunk("auth/login", async (value: User) => {
-  let result = await httpClient.post<LoginResult>(server.LOGIN_URL, value);
+  let response = await httpClient.post<LoginResult>(server.LOGIN_URL, value);
 
-  const { token } = result.data;
-  localStorage.setItem(server.TOKEN_KEY, token!);
-  return result.data;
+  const { token, result } = response.data;
+  localStorage.setItem(server.TOKEN_KEY, token!); 
+  if (result === "ok") {
+    return response.data;
+  }
+
+  throw new Error("login failed");
 });
 
 export const register = createAsyncThunk(
