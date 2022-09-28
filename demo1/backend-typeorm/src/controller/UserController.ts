@@ -3,6 +3,7 @@ import { Users } from "../entity/User";
 import { AppDataSource } from "../data-source";
 import * as bcrypt from "bcryptjs";
 import { savedValue } from "../utils/cm-util";
+import { TypedBodyRequest } from "../types/Request.types";
 
 export class UserController {
   // private userRepository = getRepository(User)
@@ -27,7 +28,7 @@ export class UserController {
     }
   }
 
-  async login(req: Request, res: Response, next: NextFunction) {
+  async login(req: TypedBodyRequest<Users>, res: Response, next: NextFunction) {
     try {
       const { username, password } = req.body;
 
