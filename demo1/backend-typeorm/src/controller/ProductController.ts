@@ -52,6 +52,20 @@ export class ProductController {
     });
   }
 
+
+  async one(
+    req: TypedParamRequest<Products>,
+    res: Response,
+    next: NextFunction
+  ) {
+    return this.productRepo.findOne({
+      where: {
+        product_id: Number(req.params.product_id),
+      },
+    });
+  }
+  
+
   async update(req: Request, res: Response, next: NextFunction) {
     const form = new formidable.IncomingForm();
     form.parse(req, async (error, fields: any, files) => {
