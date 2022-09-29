@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Products } from "../entity/Products";
 import { AppDataSource } from "../data-source";
 import * as formidable from "formidable";
+import { generateSeq } from "../utils/cm-util";
 
 export class ProductController {
   private productRepository = AppDataSource.getMongoRepository(Products);
