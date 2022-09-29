@@ -23,7 +23,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name";
 
-React 
+Cat 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="stock";
 
@@ -36,7 +36,7 @@ Content-Disposition: form-data; name="price";
 Content-Disposition: form-data; name="image"; filename="test.jpg"
 Content-Type: image/png
 
-< ./test_2nd.jpg
+< ./test_3nd.jpg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 

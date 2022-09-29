@@ -24,6 +24,7 @@ export class ProductController {
       newProduct.name = fields.name;
       newProduct.stock = Number(fields.stock);
       newProduct.price = Number(fields.price);
+      newProduct.created = new Date();
       let doc: Products = await this.productRepo.save(newProduct);
 
       const fileName = getFileName(files, doc.product_id.toString());
