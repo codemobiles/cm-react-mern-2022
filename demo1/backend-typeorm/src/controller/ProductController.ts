@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from "express";
 import { Products } from "../entity/Products";
 import { AppDataSource } from "../data-source";
 import * as formidable from "formidable";
-import { generateSeq } from "../utils/cm-util";
+import { generateSeq, getFileName, uploadImage } from "../utils/cm-util";
 
 export class ProductController {
-  private productRepository = AppDataSource.getMongoRepository(Products);
+  private productRepo = AppDataSource.getMongoRepository(Products);
 
   async all(req: Request, res: Response, next: NextFunction) {
-    return this.productRepository.find();
+    return this.productRepo.find();
   }
 
   async add(req: Request, res: Response, next: NextFunction) {
@@ -24,6 +24,12 @@ export class ProductController {
       newProduct.name = fields.name;
       newProduct.stock = Number(fields.stock);
       newProduct.price = Number(fields.price);
+      let doc: Products = await this.productRepo.save(newProduct);
+
+      const fileName = getFileName(files, doc.product_id.toString());
+      await uploadImage(files, fileName);
+      await this.productRepo.update({ _id: doc._id }, { image: fileName });
+      res.json({ result: "ok", message: { ...doc, image: fileName } });
 
       console.log(JSON.stringify({ error, fields, files }));
       res.json({ error, fields, files });
