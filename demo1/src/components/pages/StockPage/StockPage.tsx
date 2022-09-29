@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import * as React from "react";
 
 type StockPageProps = {
@@ -5,7 +6,18 @@ type StockPageProps = {
 };
 
 const StockPage: React.FC<any> = () => {
-  return <div>StockPage</div>;
+  const courses: string[] = ["angular", "react", "vue", "flutter"];
+
+  return (
+    <Box>
+      StockPage
+      <ul>
+        {courses.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </Box>
+  );
 };
 
 export default StockPage;
