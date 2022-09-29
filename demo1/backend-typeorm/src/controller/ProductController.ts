@@ -30,9 +30,6 @@ export class ProductController {
       await uploadImage(files, fileName);
       await this.productRepo.update({ _id: doc._id }, { image: fileName });
       res.json({ result: "ok", message: { ...doc, image: fileName } });
-
-      console.log(JSON.stringify({ error, fields, files }));
-      res.json({ error, fields, files });
     });
   }
 }
