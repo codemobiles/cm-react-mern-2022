@@ -31,11 +31,19 @@ export const getProducts = createAsyncThunk(
 );
 
 // Delete
-export const deleteProduct = createAsyncThunk("stock/delete", async (id: string) => {
-  await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
+export const deleteProduct = createAsyncThunk(
+  "stock/delete",
+  async (id: string) => {
+    await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
+    store.dispatch(getProducts());
+  }
+);
+
+// Add
+export const addProduct = createAsyncThunk("stock/add", async (formData: FormData) => {
+  await httpClient.post(server.PRODUCT_URL, formData);
   store.dispatch(getProducts());
 });
-
 
 const stockSlice = createSlice({
   name: "stock",
