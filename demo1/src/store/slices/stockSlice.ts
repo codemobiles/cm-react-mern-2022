@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { server } from "../../constants";
 import { httpClient } from "../../utils/HttpClient";
+import { RootState } from "../store";
 
 export interface StockState {
   stockAllResult: any[];
@@ -39,4 +40,5 @@ const stockSlice = createSlice({
   },
 });
 
+export const stockSelector = (state: RootState) => state.stockReducer;
 export default stockSlice.reducer;

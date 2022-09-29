@@ -9,6 +9,7 @@ type StockPageProps = {
 
 const StockPage: React.FC<any> = () => {
   const dispatch = useAppDispatch();
+  
 
   React.useEffect(() => {
     // listen created event
