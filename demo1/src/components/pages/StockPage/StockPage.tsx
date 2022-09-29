@@ -175,7 +175,7 @@ const Stock = (props: any) => {
             thousandSeparator={true}
             decimalScale={2}
             fixedDecimalScale={true}
-            prefix={"฿"}
+            suffix={"฿"}
           />
         </Typography>
       ),
