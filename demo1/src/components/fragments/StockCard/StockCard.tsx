@@ -1,3 +1,4 @@
+import { Stack, Typography } from "@mui/material";
 import * as React from "react";
 
 // icon={AddShoppingCart}
@@ -13,7 +14,12 @@ type StockCardProps = {
 };
 
 const StockCard: React.FC<StockCardProps> = (props) => {
-  return <div>{props.title}</div>;
+  return (
+    <Stack direction="row">
+      <Typography component="h3">{props.title}</Typography>
+      <props.icon />
+    </Stack>
+  );
 };
 
 export default StockCard;
