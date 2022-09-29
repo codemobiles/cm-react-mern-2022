@@ -13,7 +13,7 @@ const StockPage: React.FC<any> = () => {
       StockPage
       <ul>
         {courses.map((item) => (
-          <li>{item}</li>
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </Box>
