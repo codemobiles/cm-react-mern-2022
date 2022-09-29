@@ -22,12 +22,10 @@ export class ProductController {
     res: Response,
     next: NextFunction
   ) {
-    let productToRemove = await this.productRepo.findOneBy({
+    await this.productRepo.findOneAndDelete({
       product_id: Number(req.params.product_id),
     });
-
-    await this.productRepo.remove(productToRemove);
-    await deleteFile(productToRemove.image);
+    // await deleteFile(productToRemove.image);
     return { result: "ok" };
   }
 
