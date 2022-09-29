@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { server } from "../../constants";
+import { Product } from "../../types/product.type";
 import { httpClient } from "../../utils/HttpClient";
 import { RootState } from "../store";
 
 export interface StockState {
-  stockAllResult: any[];
-  stockOneResult: any | null;
+  stockAllResult: Product[];
+  stockOneResult: Product | null;
 }
 
 const initialState: StockState = {
@@ -18,12 +19,12 @@ export const getProducts = createAsyncThunk(
   "stock/getAll",
   async (keyword?: string) => {
     if (keyword) {
-      const result = await httpClient.get(
+      const result = await httpClient.get<Product[]>(
         `${server.PRODUCT_URL}/name/${keyword}`
       );
       return result.data;
     } else {
-      const result = await httpClient.get(server.PRODUCT_URL);
+      const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
       return result.data;
     }
   }
