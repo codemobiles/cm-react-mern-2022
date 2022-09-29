@@ -5,6 +5,7 @@ export interface Product {
   name: string;
   image?: string;
   file?: any;
+  qty?: number;
   file_obj?: string;
   stock: number | string;
   price: number | string;

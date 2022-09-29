@@ -13,7 +13,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
-import NumberFormat from "react-number-format";
+import { NumericFormat } from "react-number-format";
 import { useSelector } from "react-redux";
 import {
   addOrder,
@@ -79,7 +79,7 @@ const Shop = (props: any) => {
 
           {/* Price and Qty Order  */}
           <Typography align="right" color="textPrimary">
-            <NumberFormat
+            <NumericFormat
               value={item.price}
               displayType={"text"}
               thousandSeparator={true}
@@ -200,7 +200,7 @@ const Shop = (props: any) => {
           >
             <Typography variant="h6">Tax 7%</Typography>
             <Typography variant="h6" color="red">
-              <NumberFormat
+              <NumericFormat
                 value={shopReducer.mTaxAmt}
                 displayType={"text"}
                 decimalScale={2}
@@ -221,7 +221,7 @@ const Shop = (props: any) => {
           >
             <Typography variant="h4">Total</Typography>
             <Typography variant="h4" color="primary">
-              <NumberFormat
+              <NumericFormat
                 value={shopReducer.mTotalPrice}
                 displayType={"text"}
                 thousandSeparator={true}
