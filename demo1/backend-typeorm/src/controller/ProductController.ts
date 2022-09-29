@@ -2,13 +2,33 @@ import { NextFunction, Request, Response } from "express";
 import { Products } from "../entity/Products";
 import { AppDataSource } from "../data-source";
 import * as formidable from "formidable";
-import { generateSeq, getFileName, uploadImage } from "../utils/cm-util";
+import {
+  deleteFile,
+  generateSeq,
+  getFileName,
+  uploadImage,
+} from "../utils/cm-util";
+import { TypedParamRequest } from "../types/Request.types";
 
 export class ProductController {
   private productRepo = AppDataSource.getMongoRepository(Products);
 
   async all(req: Request, res: Response, next: NextFunction) {
     return this.productRepo.find({ order: { ["created"]: "DESC" } });
+  }
+
+  async remove(
+    req: TypedParamRequest<Products>,
+    res: Response,
+    next: NextFunction
+  ) {
+    let productToRemove = await this.productRepo.findOneBy({
+      product_id: Number(req.params.product_id),
+    });
+
+    await this.productRepo.remove(productToRemove);
+    await deleteFile(productToRemove.image);
+    return { result: "ok" };
   }
 
   async add(req: Request, res: Response, next: NextFunction) {
