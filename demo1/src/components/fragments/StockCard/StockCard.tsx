@@ -1,24 +1,36 @@
-import { Stack, Typography } from "@mui/material";
-import * as React from "react";
+import React from "react";
+import Card from "@mui/material/Card";
+import { Typography, Grid } from "@mui/material";
 
-// icon={AddShoppingCart}
-// title="TOTAL"
-// subtitle="112 THB"
-// color="#00a65a"
-
-type StockCardProps = {
-  icon: any;
-  title: string;
-  subtitle: string;
-  color: string;
-};
-
-const StockCard: React.FC<StockCardProps> = (props) => {
+const StockCard = (props: any) => {
   return (
-    <Stack direction="row">
-      <Typography component="h3">{props.title}</Typography>
-      <props.icon />
-    </Stack>
+    <Card>
+      <Grid container style={{ minHeight: 70 }}>
+        <Grid item sx={{ flexGrow: 1, height: 100, padding: 1 }}>
+          <Typography variant="h5" color="textPrimary">
+            {props.title}
+          </Typography>
+          <Typography variant="h6" color="textSecondary">
+            {props.subtitle}
+          </Typography>
+        </Grid>
+
+        <Grid
+          item
+          style={{
+            backgroundColor: props.color,
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: 70,
+          }}
+        >
+          <props.icon fontSize="large" />
+          {/* {React.createElement(props.icon, { fontSize: "large" })} */}
+        </Grid>
+      </Grid>
+    </Card>
   );
 };
 
