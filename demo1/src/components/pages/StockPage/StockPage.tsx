@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import * as React from "react";
-import { getProducts } from "../../../store/slices/stockSlice";
+import { useSelector } from "react-redux";
+import { getProducts, stockSelector } from "../../../store/slices/stockSlice";
 import { useAppDispatch } from "../../../store/store";
 
 type StockPageProps = {
@@ -9,7 +10,7 @@ type StockPageProps = {
 
 const StockPage: React.FC<any> = () => {
   const dispatch = useAppDispatch();
-  
+  const stockReducer = useSelector(stockSelector);
 
   React.useEffect(() => {
     // listen created event
@@ -17,14 +18,12 @@ const StockPage: React.FC<any> = () => {
     dispatch(getProducts());
   });
 
-  const courses: string[] = ["angular", "react", "vue", "flutter"];
-
   return (
     <Box>
       StockPage
       <ul>
-        {courses.map((item) => (
-          <li key={item}>{item}</li>
+        {stockReducer.stockAllResult.map((item) => (
+          <li key={item.product_id}>{item.name}</li>
         ))}
       </ul>
     </Box>
