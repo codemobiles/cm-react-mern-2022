@@ -25,9 +25,9 @@ const columns: GridColDef[] = [
 ];
 
 const rows = [
-  { id: 1, name: "Angular", price: 10 },
-  { id: 2, name: "Vue", price: 12 },
-  { id: 3, name: "React", price: 30 },
+  { id: 1, name: "Angular", price: 10, stock: 10 },
+  { id: 2, name: "Vue", price: 12, stock: 10 },
+  { id: 3, name: "React", price: 30, stock: 10 },
 ];
 
 export default function DataGridDemo() {
