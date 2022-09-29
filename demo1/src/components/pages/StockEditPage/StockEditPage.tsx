@@ -1,76 +1,10 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import {
-  DataGrid,
-  GridColDef,
-  GridRenderCellParams,
-  GridValueGetterParams,
-} from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
-import { getProducts, stockSelector } from "../../../store/slices/stockSlice";
-import { useAppDispatch } from "../../../store/store";
-import { imageUrl } from "../../../constants";
+import React from "react";
+import { useMatch } from "react-router-dom";
 
-const columns: GridColDef[] = [
-  { field: "product_id", headerName: "ID", width: 90 },
-  {
-    field: "image",
-    headerName: "Image",
-    renderCell: ({ value }: GridRenderCellParams<string>) => (
-      <img alt="" src={imageUrl + "/images/" + value} style={{ height: 50 }} />
-    ),
-  },
-  {
-    field: "name",
-    headerName: "Name",
-    width: 150,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    width: 150,
-  },
-  {
-    field: "stock",
-    headerName: "Stock",
-    width: 150,
-  },
-];
+type Props = {};
 
-const rows = [
-  { id: 1, name: "Angular", price: 10, stock: 10 },
-  { id: 2, name: "Vue", price: 12, stock: 10 },
-  { id: 3, name: "React", price: 30, stock: 10 },
-];
+export default function StockEditPage({}: Props) {
+  const match = useMatch("/stock/edit/:id");
 
-export default function DataGridDemo() {
-  const stockReducer = useSelector(stockSelector);
-  const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  return (
-    <Box sx={{ height: 400, width: "100%" }}>
-      {/* <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      /> */}
-
-      <DataGrid
-        sx={{ "& .MuiDataGrid-cell:focus": { outline: "solid #ff0000 0px" } }}
-        getRowId={(row) => row.product_id}
-        rows={stockReducer.stockAllResult}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-      />
-    </Box>
-  );
+  return <div>StockEditPage {match?.params.id}</div>;
 }

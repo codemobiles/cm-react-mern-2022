@@ -242,7 +242,7 @@ const Stock = (props: any) => {
     setOpenDialog(false);
   };
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -369,7 +369,7 @@ const Stock = (props: any) => {
           "& .MuiDataGrid-cell:focus": { outline: "solid #2196f3 0px" },
         }}
         getRowId={(row) => row.product_id}
-        onRowClick={(e) => {}}
+        // onRowClick={(e) => handleClickOpen()}
         rows={stockReducer.stockAllResult}
         columns={stockColumns}
         pageSize={10}
