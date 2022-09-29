@@ -30,9 +30,13 @@ export const getProducts = createAsyncThunk(
 
 const stockSlice = createSlice({
   name: "stock",
-  initialState: {},
+  initialState: initialState,
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(getProducts.fulfilled, (state, action) => {
+      state.stockAllResult = action.payload;
+    });
+  },
 });
 
 export default stockSlice.reducer;
