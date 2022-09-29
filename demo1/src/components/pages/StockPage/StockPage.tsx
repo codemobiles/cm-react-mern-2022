@@ -242,6 +242,10 @@ const Stock = (props: any) => {
     setOpenDialog(false);
   };
 
+  const showMyDialog = () => {
+    
+  };
+
   const showDialog = () => {
     if (selectedProduct === null) {
       return "";
@@ -346,6 +350,7 @@ const Stock = (props: any) => {
         }}
       />
       {showDialog()}
+      {showMyDialog()}
     </Box>
   );
 };
