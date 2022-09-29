@@ -52,19 +52,23 @@ export class ProductController {
     });
   }
 
-
   async one(
     req: TypedParamRequest<Products>,
     res: Response,
     next: NextFunction
   ) {
-    return this.productRepo.findOne({
+    const result = await this.productRepo.findOne({
       where: {
         product_id: Number(req.params.product_id),
       },
     });
+
+    if (result) {
+      return result;
+    } else {
+      return { result: "nok", message: "Not found this product_id" };
+    }
   }
-  
 
   async update(req: Request, res: Response, next: NextFunction) {
     const form = new formidable.IncomingForm();
