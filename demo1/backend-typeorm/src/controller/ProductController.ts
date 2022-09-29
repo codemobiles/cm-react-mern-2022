@@ -13,7 +13,7 @@ export class ProductController {
   async add(req: Request, res: Response, next: NextFunction) {
     const form = new formidable.IncomingForm();
     form.parse(req, async (error, fields: any, files) => {
-      
+      console.log(JSON.stringify({ error, fields, files }));
     });
   }
 }
