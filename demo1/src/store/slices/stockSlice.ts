@@ -39,11 +39,31 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+// Edit
+export const editProdcut = createAsyncThunk(
+  "stock/edit",
+  async (formData: any) => {
+    await httpClient.put(server.PRODUCT_URL, formData);
+  }
+);
+
+// Query by Id
+export const getProductById = createAsyncThunk(
+  "stock/getById",
+  async (id: string): Promise<Product> => {
+    const result = await await httpClient.get(`${server.PRODUCT_URL}/id/${id}`);
+    return result.data;
+  }
+);
+
 // Add
-export const addProduct = createAsyncThunk("stock/add", async (formData: FormData) => {
-  await httpClient.post(server.PRODUCT_URL, formData);
-  store.dispatch(getProducts());
-});
+export const addProduct = createAsyncThunk(
+  "stock/add",
+  async (formData: FormData) => {
+    await httpClient.post(server.PRODUCT_URL, formData);
+    store.dispatch(getProducts());
+  }
+);
 
 const stockSlice = createSlice({
   name: "stock",
