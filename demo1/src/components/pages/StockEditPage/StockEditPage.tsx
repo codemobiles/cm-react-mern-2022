@@ -6,7 +6,7 @@ import { getProducts, stockSelector } from "../../../store/slices/stockSlice";
 import { useAppDispatch } from "../../../store/store";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "product_id", headerName: "ID", width: 90 },
   {
     field: "name",
     headerName: "Name",
@@ -40,8 +40,19 @@ export default function DataGridDemo() {
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>
-      <DataGrid
+      {/* <DataGrid
         rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        disableSelectionOnClick
+        experimentalFeatures={{ newEditingApi: true }}
+      /> */}
+
+      <DataGrid
+        getRowId={(row) => row.product_id}
+        rows={stockReducer.stockAllResult}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
