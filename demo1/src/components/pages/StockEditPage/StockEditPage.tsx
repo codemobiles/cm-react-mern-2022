@@ -9,13 +9,16 @@ import {
 import { useSelector } from "react-redux";
 import { getProducts, stockSelector } from "../../../store/slices/stockSlice";
 import { useAppDispatch } from "../../../store/store";
+import { imageUrl } from "../../../constants";
 
 const columns: GridColDef[] = [
   { field: "product_id", headerName: "ID", width: 90 },
   {
     field: "image",
     headerName: "Image",
-    renderCell: ({ value }: GridRenderCellParams<string>) => <b>{value}</b>,
+    renderCell: ({ value }: GridRenderCellParams<string>) => (
+      <img alt="" src={imageUrl + "/images/" + value} style={{ height: 50 }} />
+    ),
   },
   {
     field: "name",
