@@ -2,7 +2,14 @@ import React from "react";
 import Card from "@mui/material/Card";
 import { Typography, Grid } from "@mui/material";
 
-const StockCard = (props: any) => {
+type StockCardProps = {
+  icon: any;
+  title: string;
+  subtitle: string;
+  color: string;
+};
+
+const StockCard = (props: StockCardProps) => {
   return (
     <Card>
       <Grid container style={{ minHeight: 70 }}>
