@@ -1,12 +1,22 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
 import { getProducts, stockSelector } from "../../../store/slices/stockSlice";
 import { useAppDispatch } from "../../../store/store";
 
 const columns: GridColDef[] = [
   { field: "product_id", headerName: "ID", width: 90 },
+  {
+    field: "image",
+    headerName: "Image",
+    renderCell: ({ value }: GridRenderCellParams<string>) => <b>{value}</b>,
+  },
   {
     field: "name",
     headerName: "Name",
