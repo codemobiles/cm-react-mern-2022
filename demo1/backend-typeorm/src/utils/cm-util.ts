@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 import { AppDataSource } from "../data-source";
-// import { Counters } from '../entity/Counters';
+import { Counters } from "../entity/Counters";
 
 export function savedValue(value: any, _default: any): any {
   return value ? value : _default;
@@ -34,13 +34,13 @@ export async function uploadImage(files: any, name: string) {
   }
 }
 
-// export async function generateSeq(id: string): Promise<number> {
-//   const counterRepo = AppDataSource.getRepository(Counters);
-//   const { _id, seq } = await counterRepo.findOne({
-//     where: { id },
-//   });
+export async function generateSeq(id: string): Promise<number> {
+  const counterRepo = AppDataSource.getRepository(Counters);
+  const { _id, seq } = await counterRepo.findOne({
+    where: { id },
+  });
 
-//   const nextSeq = seq ? seq + 1 : 1;
-//   await counterRepo.update({ _id }, { seq: nextSeq });
-//   return nextSeq;
-// }
+  const nextSeq = seq ? seq + 1 : 1;
+  await counterRepo.update({ _id }, { seq: nextSeq });
+  return nextSeq;
+}
