@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { server } from "../../constants";
 import { Product } from "../../types/product.type";
 import { httpClient } from "../../utils/HttpClient";
-import { RootState } from "../store";
+import { RootState, store } from "../store";
 
 export interface StockState {
   stockAllResult: Product[];
@@ -29,6 +29,13 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+
+// Delete
+export const deleteProduct = createAsyncThunk("stock/delete", async (id: string) => {
+  await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
+  store.dispatch(getProducts());
+});
+
 
 const stockSlice = createSlice({
   name: "stock",
