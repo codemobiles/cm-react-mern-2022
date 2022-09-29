@@ -64,6 +64,7 @@ export default function DataGridDemo() {
       /> */}
 
       <DataGrid
+        sx={{ "& .MuiDataGrid-cell:focus": { outline: "solid #ff0000 0px" } }}
         getRowId={(row) => row.product_id}
         rows={stockReducer.stockAllResult}
         columns={columns}
