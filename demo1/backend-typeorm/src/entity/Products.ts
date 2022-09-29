@@ -31,7 +31,7 @@ export class Products {
 export const cloneProduct = (fields: any) => {
   const newObject = new Products();
   newObject.name = fields.name;
-  newObject.image = fields.image;
+  fields.image && (newObject.image = fields.image);
   newObject.price = Number(fields.price);
   newObject.stock = Number(fields.stock);
   newObject.product_id = Number(fields.id);

@@ -2,14 +2,26 @@ import * as fs from "fs-extra";
 import { AppDataSource } from "../data-source";
 import { Counters } from "../entity/Counters";
 
+const uploadPath =
+  "/Users/chaiyasittayabovorn/Desktop/cm-react-mern-2022/demo1/backend-typeorm/uploaded/images/";
+
 export function savedValue(value: any, _default: any): any {
   return value ? value : _default;
 }
 
 export async function deleteFile(name: string) {
-  var path = __dirname + "./../../uploaded/images/" + name;
-  if (fs.existsSync(path)) {
-    await fs.remove(path);
+  if (name) {
+    const toDeletedFiles = fs
+      .readdirSync(uploadPath)
+      .filter(
+        (allFilesPaths: string) =>
+          allFilesPaths.match(new RegExp(`(${name})+(.*)$`, "i")) !== null
+      );
+
+    toDeletedFiles.forEach(async (file) => {
+      // console.log(file);
+      await fs.remove(uploadPath + file);
+    });
   }
 }
 
@@ -25,11 +37,12 @@ export function getFileName(files: any, id: string): string | null {
 export async function uploadImage(files: any, name: string) {
   if (files.image != null) {
     var oldpath = files.image.filepath;
-    var newpath = __dirname + "./../../uploaded/images/" + name;
+    var newpath = uploadPath + name;
 
     if (fs.existsSync(newpath)) {
       await fs.remove(newpath);
     }
+    
     await fs.move(oldpath, newpath);
   }
 }

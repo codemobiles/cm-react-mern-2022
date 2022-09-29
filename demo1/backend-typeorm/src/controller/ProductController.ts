@@ -14,7 +14,7 @@ export class ProductController {
   private productRepo = AppDataSource.getMongoRepository(Products);
 
   async all(req: Request, res: Response, next: NextFunction) {
-    return this.productRepo.find({ order: { ["created"]: "DESC" } });
+    return this.productRepo.find({ order: { created: "DESC" } });
   }
 
   async remove(
@@ -25,7 +25,7 @@ export class ProductController {
     await this.productRepo.findOneAndDelete({
       product_id: Number(req.params.product_id),
     });
-    // await deleteFile(productToRemove.image);
+    await deleteFile(req.params.product_id.toString());
     return { result: "ok" };
   }
 
