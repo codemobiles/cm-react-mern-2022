@@ -13,6 +13,17 @@ export class ProductController {
   async add(req: Request, res: Response, next: NextFunction) {
     const form = new formidable.IncomingForm();
     form.parse(req, async (error, fields: any, files) => {
+      if (error) {
+        res.json({ result: "nok", error });
+        return;
+      }
+
+      const newProduct = new Products();
+      newProduct.product_id = await generateSeq("product_id");
+      newProduct.name = fields.name;
+      newProduct.stock = Number(fields.stock);
+      newProduct.price = Number(fields.price);
+
       console.log(JSON.stringify({ error, fields, files }));
       res.json({ error, fields, files });
     });
