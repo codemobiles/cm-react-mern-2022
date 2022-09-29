@@ -8,7 +8,7 @@ export class ProductController {
   private productRepo = AppDataSource.getMongoRepository(Products);
 
   async all(req: Request, res: Response, next: NextFunction) {
-    return this.productRepo.find();
+    return this.productRepo.find({ order: { ["created"]: "DESC" } });
   }
 
   async add(req: Request, res: Response, next: NextFunction) {
