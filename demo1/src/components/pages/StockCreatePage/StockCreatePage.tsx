@@ -24,6 +24,7 @@ const StockCreate = () => {
   const navigate = useNavigate();
 
   const onSubmit = (values: Product) => {
+    // alert(JSON.stringify(values));
     let formData = new FormData();
     formData.append("name", values.name);
     formData.append("price", String(values.price));
@@ -53,7 +54,7 @@ const StockCreate = () => {
   const showForm = () => {
     return (
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Card>
+        <Card elevation={1}>
           <CardContent sx={{ padding: 4 }}>
             <Typography gutterBottom variant="h3">
               Create Product
