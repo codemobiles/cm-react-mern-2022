@@ -24,7 +24,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import Moment from "react-moment";
-import NumberFormat from "react-number-format";
+import { NumericFormat } from "react-number-format";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { imageUrl } from "./../../../constants";
@@ -153,7 +153,7 @@ const Stock = (props: any) => {
       field: "stock",
       renderCell: ({ value }: GridRenderCellParams<string>) => (
         <Typography variant="body1">
-          <NumberFormat
+          <NumericFormat
             value={value}
             displayType={"text"}
             thousandSeparator={true}
@@ -169,7 +169,7 @@ const Stock = (props: any) => {
       width: 120,
       renderCell: ({ value }: GridRenderCellParams<string>) => (
         <Typography variant="body1">
-          <NumberFormat
+          <NumericFormat
             value={value}
             displayType={"text"}
             thousandSeparator={true}
