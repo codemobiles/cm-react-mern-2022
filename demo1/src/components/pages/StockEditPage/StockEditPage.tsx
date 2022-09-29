@@ -61,7 +61,7 @@ const StockEdit = () => {
 
   const onSubmit = (values: Product) => {
     let formData = new FormData();
-    formData.append("product_id", String(values.product_id));
+    formData.append("id", String(values.product_id));
     formData.append("name", values.name);
     formData.append("price", String(values.price));
     formData.append("stock", String(values.stock));
