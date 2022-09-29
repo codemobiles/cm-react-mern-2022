@@ -51,4 +51,30 @@ export class ProductController {
       res.json({ result: "ok", message: { ...doc, image: fileName } });
     });
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    const form = new formidable.IncomingForm();
+    form.parse(req, async (error, fields: any, files) => {
+      if (error) {
+        res.json({ result: "nok", error });
+        return;
+      }
+
+      const fileName = getFileName(files, fields.id);
+      if (fileName) {
+        fields.image = fileName;
+        await uploadImage(files, fileName);
+      }
+
+      await this.productRepo.findOneAndUpdate(
+        { product_id: Number(fields.id) },
+        {
+          $set: cloneProduct(fields),
+        },
+        { upsert: false } // create if not exist
+      );
+
+      res.json({ result: "ok" });
+    });
+  }
 }
