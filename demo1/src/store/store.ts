@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 import exampleReducer from "./slices/exampleSlice";
 import authReducer from "./slices/authSlice";
 import stockReducer from "./slices/stockSlice";
+import shopReducer from "./slices/shopSlice";
 
 const reducer = {
   exampleReducer,
   authReducer,
   stockReducer,
+  shopReducer,
 };
 
 export const store = configureStore({
