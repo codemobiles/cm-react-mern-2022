@@ -27,6 +27,11 @@ export class TransactionController {
             "staff.password": 0,
           },
         },
+        {
+          $addFields: {
+            staff_id: "$staff.username",
+          },
+        },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
