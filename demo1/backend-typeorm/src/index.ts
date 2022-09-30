@@ -6,13 +6,15 @@ import * as cors from "cors";
 import { myInterceptor1 } from "./utils/my-interceptor";
 import jwt from "./utils/jwt";
 
+console.log("D: " + process.env.ROOT_PATH);
+
 AppDataSource.initialize()
   .then(async () => {
     // create express app
     const app = express();
     app.use(express.json());
     app.use(cors());
-    app.use(express.static(__dirname + "./../uploaded"));
+    app.use(express.static(process.env.ROOT_PATH + "/uploaded"));
 
     // register express routes from defined application routes
     Routes.forEach((route) => {

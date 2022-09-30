@@ -27,7 +27,7 @@
       "typeorm": "0.3.10"
    },
    "scripts": {
-      "start": "ROOT_PATH=/Users/chaiyasittayabovorn/Desktop/cm-react-mern-2022/demo1/backend-typeorm  ts-node-dev src/index.ts",
+      "start": "ROOT_PATH=/Users/chaiyasittayabovorn/Desktop/cm-react-mern-2022/demo1/backend-typeorm ts-node-dev src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    }
 }
