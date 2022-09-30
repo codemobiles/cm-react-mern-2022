@@ -13,6 +13,14 @@ export class TransactionController {
       .aggregate([
         { $match: { paid: { $gt: 600 } } },
         { $match: { paid: { $lt: 1500 } } },
+        {
+          $lookup: {
+            from: "users",
+            localField: "staff_id",
+            foreignField: "_id",
+            as: "staff",
+          },
+        },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
