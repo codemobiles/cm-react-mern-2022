@@ -25,6 +25,8 @@ sudo nginx -s stop
 http://localhost:8080/
 open /opt/homebrew/etc/nginx/
 open /opt/homebrew/var/www
+code /opt/homebrew/etc/nginx/nginx.conf
+
 
 
 # location / {
