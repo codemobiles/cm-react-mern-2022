@@ -42,7 +42,7 @@ export async function uploadImage(files: any, name: string) {
     if (fs.existsSync(newpath)) {
       await fs.remove(newpath);
     }
-    
+
     await fs.move(oldpath, newpath);
   }
 }
