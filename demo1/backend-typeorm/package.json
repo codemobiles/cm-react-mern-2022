@@ -17,6 +17,7 @@
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.19.1",
       "cors": "^2.8.5",
+      "dotenv": "^16.0.3",
       "express": "^4.18.1",
       "formidable": "^2.0.1",
       "fs-extra": "^10.1.0",
@@ -28,7 +29,8 @@
    },
    "scripts": {
       "start": "ROOT_PATH=/Users/chaiyasittayabovorn/Desktop/cm-react-mern-2022/demo1/backend-typeorm ts-node-dev src/index.ts",
-      "win_start": "SET ROOT_PATH=/Users/chaiyasittayabovorn/Desktop~1/cm-react-mern-2022/demo1/backend-typeorm & ts-node-dev src/index.ts",
+      "start2": "ts-node-dev -r dotenv/config src/index.ts",
+      "win_start": "SET ROOT_PATH=/Users/chaiyasittayabovorn/Desktop~1/cm-react-mern-2022/demo1/backend-typeorm& ts-node-dev src/index.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    }
 }

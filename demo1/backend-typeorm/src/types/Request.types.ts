@@ -1,4 +1,5 @@
-import { Query } from 'typeorm/driver/Query';
+import { Query } from "typeorm/driver/Query";
+import * as Express from "express";
 
 export interface TypedBodyRequest<U> extends Express.Request {
   body: U;
@@ -16,4 +17,3 @@ export interface TypedRequest<T extends Query, U> extends Express.Request {
   body: U;
   query: T;
 }
-
