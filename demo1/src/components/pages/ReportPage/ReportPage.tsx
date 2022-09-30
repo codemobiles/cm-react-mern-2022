@@ -23,8 +23,8 @@ const Report = () => {
     datasets: [
       {
         label: "Revenue 2022",
-        fill: false,
-        lineTension: 0.1, // line curve
+        fill: true,
+        lineTension: 0.5, // line curve
         backgroundColor: [
           "rgba(54, 162, 235, 0.2)",
           "rgba(255, 99, 132, 0.2)",
@@ -147,7 +147,7 @@ const Report = () => {
       </IconButton>
       <Box sx={{ height: "50vh" }}>
         {chartType === "line" && (
-          <Chart type={"line"} data={data} width="100%" options={chartOption} />
+          <Chart type="line" data={data} width="100%" options={chartOption} />
         )}
         {chartType === "pie" && (
           <Chart type="pie" data={data} width="100%" options={chartOption} />
