@@ -11,32 +11,8 @@ export class TransactionController {
   async all(req: Request, res: Response, next: NextFunction) {
     const data = await this.transRepo
       .aggregate([
-        // { $match: { total: { $lt: 1000 } } },
-        // { $match: { total: { $gt: 1000 } } },
-        {
-          $lookup: {
-            from: "users",
-            localField: "staff_id",
-            foreignField: "_id",
-            as: "staff",
-          },
-        },
-        { $unwind: "$staff" },
-        {
-          $project: {
-            "staff.password": 0,
-          },
-        },
-        {
-          $addFields: {
-            staff_id: "$staff.username",
-          },
-        },
-        {
-          $project: {
-            staff: 0,
-          },
-        },
+        { $match: { paid: { $gt: 600 } } },
+        { $match: { paid: { $lt: 1500 } } },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
