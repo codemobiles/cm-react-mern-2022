@@ -1,5 +1,23 @@
 sudo npm i -g pm2
 
+
+# advance ecosystem
+pm2 init simple
+ pm2 start ecosystem.config.js
+
+# ecosystem.config.js 
+module.exports = {
+  apps: [
+    {
+      name: "app1",
+      script: "./index.js",
+      node_args: "-r dotenv/config",
+    },
+  ],
+};
+
+
+
 # basic 1
 pm2 start server.js
 pm2 start server.js --name custom_name
