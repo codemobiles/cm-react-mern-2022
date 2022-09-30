@@ -9,6 +9,7 @@ import { shopSelector, submitPayment } from "../../../store/slices/shopSlice";
 import { useAppDispatch } from "../../../store/store";
 import React from "react";
 import TextField from "@mui/material/TextField";
+import { Stack } from "@mui/material";
 
 const Payment = (props: any) => {
   const shopReducer = useSelector(shopSelector);
@@ -47,14 +48,19 @@ const Payment = (props: any) => {
   const showForm = () => {
     return (
       <>
-        {isMustChanged() && (
+        <Stack direction="row">
           <TextField
             variant="outlined"
             margin="normal"
+            value={given}
             required
-            value={given - shopReducer.mTotalPrice}
             fullWidth
-            label="Change"
+            sx={{
+              "& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input": {
+                color: "green",
+              },
+            }}
+            label="Given"
             InputLabelProps={{
               shrink: true,
             }}
@@ -66,26 +72,27 @@ const Payment = (props: any) => {
               ),
             }}
           />
-        )}
-
-        <TextField
-          variant="outlined"
-          margin="normal"
-          value={given}
-          required
-          fullWidth
-          label="Given"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          InputProps={{
-            style: { fontSize: 35, marginBottom: 20 },
-            readOnly: true,
-            startAdornment: (
-              <InputAdornment position="start">THB</InputAdornment>
-            ),
-          }}
-        />
+          {isMustChanged() && (
+            <TextField
+              variant="filled"
+              margin="normal"
+              required
+              value={given - shopReducer.mTotalPrice}
+              fullWidth
+              label="Change"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                style: { fontSize: 35, marginBottom: 20 },
+                readOnly: true,
+                startAdornment: (
+                  <InputAdornment position="start">THB</InputAdornment>
+                ),
+              }}
+            />
+          )}
+        </Stack>
 
         <div style={{ marginTop: 32 }}>
           <Grid container spacing={1} p={1}>
@@ -95,7 +102,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(1000)}
+                onClick={() => setGiven(given + 1000)}
               >
                 ฿1,000
               </Button>
@@ -106,7 +113,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(500)}
+                onClick={() => setGiven(given + 500)}
               >
                 ฿500
               </Button>
@@ -117,7 +124,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(100)}
+                onClick={() => setGiven(given + 100)}
               >
                 ฿100
               </Button>
@@ -130,7 +137,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(50)}
+                onClick={() => setGiven(given + 50)}
               >
                 ฿50
               </Button>
@@ -141,7 +148,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(20)}
+                onClick={() => setGiven(given + 20)}
               >
                 ฿20
               </Button>
@@ -152,7 +159,7 @@ const Payment = (props: any) => {
                 fullWidth
                 variant="contained"
                 color="primary"
-                onClick={() => setGiven(10)}
+                onClick={() => setGiven(given + 10)}
               >
                 ฿10
               </Button>
