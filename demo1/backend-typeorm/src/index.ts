@@ -6,7 +6,7 @@ import * as cors from "cors";
 import { myInterceptor1 } from "./utils/my-interceptor";
 import jwt from "./utils/jwt";
 
-console.log("D: " + process.env.ROOT_PATH);
+console.log(process.env.ROOT_PATH);
 
 AppDataSource.initialize()
   .then(async () => {

@@ -2,8 +2,7 @@ import * as fs from "fs-extra";
 import { AppDataSource } from "../data-source";
 import { Counters } from "../entity/Counters";
 
-const uploadPath =
-  "/Users/chaiyasittayabovorn/Desktop/cm-react-mern-2022/demo1/backend-typeorm/uploaded/images/";
+const uploadPath = process.env.ROOT_PATH + "/uploaded/images/";
 
 export function savedValue(value: any, _default: any): any {
   return value ? value : _default;
