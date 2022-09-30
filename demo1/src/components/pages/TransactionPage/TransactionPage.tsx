@@ -80,7 +80,7 @@ const Transaction = (props: any) => {
       field: "order_list",
       renderCell: (params: GridRenderCellParams<any>) => {
         const orderList = JSON.parse(params.value);
-        if (orderList.ength > 0) {
+        if (orderList.length > 0) {
           return <Avatar src={`${imageUrl}/images/${orderList[0].image}`} />;
         } else {
           return <span>NO Data</span>;
