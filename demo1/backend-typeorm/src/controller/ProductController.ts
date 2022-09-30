@@ -29,6 +29,12 @@ export class ProductController {
     return { result: "ok" };
   }
 
+  async allLike(req: Request, res: Response, next: NextFunction) {
+    return this.productRepo.findBy({
+      name: new RegExp("^.*" + req.params.name + ".*$", "i"),
+    });
+  }
+
   async add(req: Request, res: Response, next: NextFunction) {
     const form = new formidable.IncomingForm();
     form.parse(req, async (error, fields: any, files) => {

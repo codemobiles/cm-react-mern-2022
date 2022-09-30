@@ -114,9 +114,9 @@ const Stock = (props: any) => {
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product>();
-  const [value, setValue] = useDebounce("", 300);
+  const [value, setValue] = useDebounce("", 3000);
 
-  useEffect(() => {
+  useEffect(() => {   
     dispatch(getProducts(value));
   }, [dispatch, value]);
 
