@@ -1,25 +1,20 @@
-import {
-  Alert,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Stack } from "@mui/system";
-import * as React from "react";
+import { Box, InputAdornment } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authSelector, login } from "../../../store/slices/authSlice";
+import { useAppDispatch } from "../../../store/store";
 import { User } from "../../../types/user.type";
-import { Controller, useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Icons from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../../store/store";
-import { add, exampleSelector } from "../../../store/slices/exampleSlice";
-import { authSelector, login } from "../../../store/slices/authSlice";
+import * as Icons from "@mui/icons-material/";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -30,11 +25,19 @@ const formValidateSchema = Yup.object().shape({
   password: Yup.string().required("Password is required").trim(),
 });
 
-type LoginPageProps = {
-  //
-};
+type LoginProps = {};
 
-const LoginPage: React.FC<any> = () => {
+const Login = (props: LoginProps) => {
+  const dispatch = useAppDispatch(); // used to call actions
+  const authReducer = useSelector(authSelector); // used to access state
+  const navigate = useNavigate();
+
+  const classes: any = {
+    root: { display: "flex", justifyContent: "center", alignItems: "center" },
+    submitBtn: { marginTop: 4 },
+    canelBtn: { marginTop: 2 },
+  };
+
   const initialValue: User = { username: "", password: "" };
   const {
     control,
@@ -45,13 +48,8 @@ const LoginPage: React.FC<any> = () => {
     resolver: yupResolver(formValidateSchema),
   });
 
-  const exampleReducer = useSelector(exampleSelector);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const authReducer = useSelector(authSelector);
-
-  const submit = async (value: User) => {
-    const result = await dispatch(login(value));
+  const onSubmit = async (values: User) => {
+    const result = await dispatch(login(values));
     if (login.fulfilled.match(result)) {
       navigate("/stock");
     }
@@ -59,84 +57,114 @@ const LoginPage: React.FC<any> = () => {
 
   const showForm = () => {
     return (
-      <form noValidate onSubmit={handleSubmit(submit)}>
-        <Stack direction="column" spacing={1}>
-          {/* Username */}
-          <Controller
-            name="username"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                label="Username"
-                variant="outlined"
-                error={Boolean(errors.username?.message)}
-                helperText={errors.username?.message}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Icons.Email />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-          />
-
-          {/* Password */}
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                type="password"
-                label="Password"
-                variant="outlined"
-                error={Boolean(errors.password?.message)}
-                helperText={errors.password?.message}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Icons.Password />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-          />
-
-          {authReducer.isError && (
-            <Alert severity="error">Login failed - internal error</Alert>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="username"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              error={Boolean(errors.username?.message)}
+              helperText={errors.username?.message}
+              {...field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Username"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icons.Email />
+                  </InputAdornment>
+                ),
+              }}
+              autoComplete="email"
+              autoFocus
+            />
           )}
+        ></Controller>
 
-          <Button type="submit" variant="contained">
-            Login
-          </Button>
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              helperText={errors.password?.message}
+              error={Boolean(errors.password?.message)}
+              {...field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icons.Password />
+                  </InputAdornment>
+                ),
+              }}
+              label="Password"
+              type="password"
+            />
+          )}
+        ></Controller>
+
+        {authReducer.isError && <Alert severity="error">Login failed</Alert>}
+
+        <Button
+          sx={classes.submitBtn}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+        >
+          Login
+        </Button>
+
+        <Grid container>
           <Button
+            sx={{ marginTop: 2 }}
+            onClick={() => {
+              navigate("/register");
+            }}
             type="button"
-            onClick={() => navigate("/register")}
+            fullWidth
             variant="outlined"
+            className="border-dashed border-1 border-gray-300"
+            color="primary"
           >
             Register
           </Button>
-        </Stack>
+        </Grid>
       </form>
     );
   };
 
   return (
-    <Box>
-      <Card>
+    <Box sx={classes.root}>
+      <Card sx={{ maxWidth: 345 }}>
         <CardContent>
-          <Typography gutterBottom variant="h5" onClick={() => dispatch(add())}>
-            Login {exampleReducer.count}
+          <Typography gutterBottom variant="h5">
+            Login
           </Typography>
+
           {showForm()}
         </CardContent>
       </Card>
+      <style>
+        {`
+          body {
+            min-height: 100vh;
+            position: relative;
+            margin: 0;
+            background-size: cover;
+            background-image: url(${process.env.PUBLIC_URL}/images/bg4.jpg);
+            text-align: center;
+          }
+        `}
+      </style>
     </Box>
   );
 };
 
-export default LoginPage;
+export default Login;
