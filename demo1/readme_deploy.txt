@@ -14,8 +14,6 @@ sudo nginx -s stop
 
 
 
-
-
 # mac ---------------
 #mac
 brew install nginx
@@ -43,3 +41,23 @@ code /opt/homebrew/etc/nginx/nginx.conf
     location /demo {
         try_files $uri $uri/ /demo/index.html; 
     }
+
+
+
+
+# deploy backend
+- yarn add dotenv
+- create .env
+- edit package.json 
+  + "start": "ts-node-dev -r dotenv/config src/index.ts",
+
+# build (convert ts -> js)
+- tsc
+- cd build
+- node -r dotenv/config index.js
+
+
+
+
+
+
