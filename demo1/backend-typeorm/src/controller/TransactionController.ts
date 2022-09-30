@@ -32,6 +32,11 @@ export class TransactionController {
             staff_id: "$staff.username",
           },
         },
+        {
+          $project: {
+            staff: 0,
+          },
+        },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
