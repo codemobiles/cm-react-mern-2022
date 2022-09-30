@@ -3,7 +3,7 @@ sudo npm i -g pm2
 
 # advance ecosystem
 pm2 init simple
- pm2 start ecosystem.config.js
+pm2 start ecosystem.config.js
 
 # ecosystem.config.js 
 module.exports = {
