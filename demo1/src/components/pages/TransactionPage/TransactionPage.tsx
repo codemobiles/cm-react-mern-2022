@@ -18,7 +18,7 @@ const Transaction = (props: any) => {
 
   useEffect(() => {
     dispatch(getTransactions());
-  }, [dispatch, shopReducer]);
+  }, [dispatch]);
 
   const transactionColumns: GridColDef[] = [
     {

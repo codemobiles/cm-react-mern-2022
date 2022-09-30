@@ -17,6 +17,8 @@ import TransactionPage from "./components/pages/TransactionPage";
 import { useSelector } from "react-redux";
 import { authSelector, relogin } from "./store/slices/authSlice";
 import { useAppDispatch } from "./store/store";
+import ProtectedRoutes from "./router/protected.routes";
+import PublicRoutes from "./router/public.routes";
 
 const drawerWidth = 240;
 
@@ -114,17 +116,34 @@ export default function App() {
         <Main open={open}>
           <DrawerHeader />
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/stock" element={<StockPage />} />
-            <Route path="/report" element={<ReportPage />} />
-            <Route path="/stock/create" element={<StockCreatePage />} />
-            <Route path="/stock/edit/:id" element={<StockEditPage />} />
-            <Route path="/report" element={<ReportPage />} />
-            <Route path="/transaction" element={<TransactionPage />} />
-            <Route path="/" element={<Navigate to="/report" />} />
+            {/** Protected Routes */}
+            {/** Wrap all Route under ProtectedRoutes element */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes isAuthented={authReducer.isAuthented} />
+              }
+            >
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/stock" element={<StockPage />} />
+              <Route path="/report" element={<ReportPage />} />
+              <Route path="/stock/create" element={<StockCreatePage />} />
+              <Route path="/stock/edit/:id" element={<StockEditPage />} />
+              <Route path="/report" element={<ReportPage />} />
+              <Route path="/transaction" element={<TransactionPage />} />
+              <Route path="/" element={<Navigate to="/report" />} />
+            </Route>
+
+            {/** Wrap all Route under PublicRoutes element */}
+            <Route
+              path="/"
+              element={<PublicRoutes isAuthented={authReducer.isAuthented} />}
+            >
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to="/login" />} />
+            </Route>
           </Routes>
         </Main>
       </Box>
