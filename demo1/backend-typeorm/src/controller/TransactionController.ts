@@ -21,6 +21,7 @@ export class TransactionController {
             as: "staff",
           },
         },
+        { $unwind: "$staff" },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
