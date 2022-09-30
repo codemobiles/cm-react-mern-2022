@@ -22,6 +22,11 @@ export class TransactionController {
           },
         },
         { $unwind: "$staff" },
+        {
+          $project: {
+            "staff.password": 0,
+          },
+        },
       ])
       .sort({ timestamp: -1 });
     return data.toArray();
