@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "cmtask",
+      "label": "pushit",
       "type": "shell",
       "command": "git add . && git commit -m '1234' && git push",
       "problemMatcher": []
